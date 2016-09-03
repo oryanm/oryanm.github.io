@@ -1,50 +1,13 @@
-# prog lang time line
+---
+layout: default
+title: Oryan M
+---
 
-
-visual basic - 2000 - 2001 - Viceman Inst
-c/c++ - 2004 - CS first time
-pascal / assembler / prolog / sql - 2006-2008 - high school
-java - 2009 - 13
-c# - 2009 - prog course 
-lua - 2011 - strc
-javascript - 
-lisp
-haskell
-kotlin 
-smalltalk
-
-xml
-json
-markdown
-yaml
-
---> 
-scala?
-
-========================
-
-cvs / svn / git
-ant / maven / gradle
-
-========================
-
-spring
-dropwizard -> jetty + jersey + jackson + metrics
-hibernate / jooq
-guava 
-liquibase
-
-intelliJ / eclipse
-weblogic / jboss/wildfly / websphere
-jira
-sonar
-jenkins / bamboo
-nexus
-grafana -> graphite
-
-junit / testng
-mokito
-
-ejb / jpa / jdbc 
-
-android
+<div id="home">
+    <h1>Blog Posts</h1>
+    <ul class="posts">
+        {% for post in site.posts %}
+        <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
