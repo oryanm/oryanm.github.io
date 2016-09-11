@@ -4,7 +4,7 @@
 
 html, body {
     background: #fdf6e3;
-      height: 100%;
+    height: 100%;
 }
 
 body {
@@ -12,12 +12,28 @@ body {
     color: #657b83;
 }
 
-h1 {
-    color: #586e75;
-}
+h1 { color: #586e75; }
 
 a, a:active, a:visited { color: #2aa198; }
 a:hover { color: #6c71c4 }
+
+/*****************************************************************************/
+/* Site
+/*****************************************************************************/
+
+.site {
+  text-align: left;
+  max-width: 42em;
+  margin: 3em auto 2em auto;
+}
+
+.title {
+  font-weight: bold;
+}
+
+  .site .title a  {
+   text-decoration: none;
+  }
 
 /*****************************************************************************/
 /* Home
@@ -40,30 +56,6 @@ ul.posts {
   }
 
 /*****************************************************************************/
-/* Site
-/*****************************************************************************/
-
-.site {
-  text-align: left;
-  width: 42em;
-  margin: 3em auto 2em auto;
-}
-
-.title {
-  font-weight: bold;
-  margin-bottom: 2em;
-}
-
-  .site .title a {
-    text-decoration: none;
-  }
-
-  .site .title a.extra {
-    text-decoration: none;
-    margin-left: 1em;
-  }
-
-/*****************************************************************************/
 /* Posts
 /*****************************************************************************/
 
@@ -73,5 +65,10 @@ ul.posts {
 }
 
 #post code {
+    padding: .1em .2em ;
+    background-color: #eee8d5
+}
+
+#post pre code {
     padding: .0em .0em ;
 }
