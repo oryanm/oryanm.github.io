@@ -4,7 +4,6 @@
 
 html, body {
     background: #fdf6e3;
-    height: 100%;
 }
 
 body {
@@ -22,53 +21,47 @@ a:hover { color: #6c71c4 }
 /*****************************************************************************/
 
 .site {
-  text-align: left;
-  max-width: 42em;
-  margin: 3em auto 2em auto;
+    max-width: 42em;
+    margin-top: 2em;
+    margin-right: auto;
+    margin-bottom: auto;
+    margin-left: auto;
 }
 
 .title {
-  font-weight: bold;
+    font-weight: bold;
 }
 
-  .site .title a  {
-   text-decoration: none;
-  }
+.site .title a  {
+    text-decoration: none;
+}
 
 /*****************************************************************************/
 /* Home
 /*****************************************************************************/
 
 ul.posts {
-  padding: 0;
-  list-style-type: none;
-  margin-bottom: 2em;
+    padding: 0;
+    list-style-type: none;
 }
 
-  ul.posts li {
+ul.posts li {
     line-height: 1.75em;
-  }
-
-  ul.posts span {
-    color: #93a1a1;
-    font-family: Monaco, monospace;
-    font-size: 80%;
-  }
+}
 
 /*****************************************************************************/
 /* Posts
 /*****************************************************************************/
 
 #post pre {
-    padding: .1em .4em .2em .4em;
-    /*border: 1px solid #ddd;*/
+    padding: 1em;
 }
 
 #post code {
-    padding: .1em .2em ;
+    padding: .2em;
     background-color: #eee8d5
 }
 
 #post pre code {
-    padding: .0em .0em ;
+    padding: .0em;
 }
