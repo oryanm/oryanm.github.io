@@ -4,6 +4,7 @@
 
 html, body {
     background: #fdf6e3;
+      height: 100%;
 }
 
 body {
@@ -23,6 +24,7 @@ a:hover { color: #6c71c4 }
 /*****************************************************************************/
 
 ul.posts {
+  padding: 0;
   list-style-type: none;
   margin-bottom: 2em;
 }
@@ -71,6 +73,5 @@ ul.posts {
 }
 
 #post code {
-    background: #eee8d5;
     padding: .0em .0em ;
 }
