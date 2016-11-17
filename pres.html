@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Title</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body {
+        font-family: 'Droid Serif';
+        color: #777872;
+        <!--text-shadow: 0 0 20px #333;-->
+        }
+
+
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-slide-content { background: #272822 }
+    </style>
+</head>
+<body>
+<textarea id="source">
+
+
+
+class: center, middle
+
+# An Introduction to Kotlin
+
+???
+
+ask questions
+
+---
+
+# Agenda
+
+- Background
+- Why Kotlin?
+- Higher order fun
+- Android
+- Gradle
+    <!--- kotlin vs scala-->
+    <!--- dsls-->
+- Resources
+
+---
+# Background
+- Statically typed programming language for the JVM, Android and the browser.
+
+- Developed by JetBrains. Open source.
+
+- Pragmatic. Aimed at the industry.
+
+- Version 1.0 released Feb 15 2016.
+
+???
+compiled to java 6 bite code and javascript.
+
+open: Under Apache 2.0 licence.
+
+Pragmatic: Kotlin is not so much about invention or research.
+focusing on use cases to make the language a good tool.
+
+not the result of some cutting edge research on type systems or GC
+
+---
+# Why Kotlin?
+- Concise
+- Safe
+- Versatile
+- Interoperable
+- Tooling
+
+???
+
+stolen from kotlin's website
+
+---
+# Concise
+Create a POJO with getters, setters, equals(), hashCode(), toString() and copy() in a single line:
+```
+data class Person(val name: String = "dude", val age: Int = 0)
+```
+
+Or filter a list using a lambda expression:
+
+```
+val positiveNumbers = list.filter {it > 0}
+```
+
+Want a singleton? Create an object:
+
+```
+object ThisIsASingleton {
+    val companyName: String = "JetBrains"
+}
+
+ThisIsASingleton.companyName
+```
+Also, no checked exceptions.
+
+???
+
+list is just a java.util.List
+
+as much inference as the compiler can muster
+
+---
+# Safe
+
+Get rid of those pesky NullPointerExceptions, you know, The Billion Dollar Mistake
+
+```
+var output : String
+output = null // error: null can not be a value of a non-null type
+```
+
+And of course, Kotlin protects you from mistakenly operating on nullable types, including those from Java
+```
+var string: String? = "Hello Hello"
+string = null
+
+var len: Int? = 0
+
+len = string.length // error: Only safe calls are allowed on nullable String?
+
+len = string?.length // null
+
+len = string?.length ?: 0 // 0
+```
+
+---
+# Safe
+
+And if you check a type is right, the compiler will auto-cast it for you
+
+```
+fun calculateTotal(obj: Any) {
+  if (obj is Invoice) {
+      obj.calculateTotal()
+  }
+}
+```
+
+---
+
+# Interoperable
+Create and consume Java code at will
+```
+// KotlinFile.kt
+fun String.leftpad(size: Int, filler: String) = "${filler.repeat(size)}$this"
+
+"Hello, World".leftpad(3, "!") // !!!Hello, world
+```
+```java
+// JavaClass.java
+public class JavaClass {
+    public static void main(String[] args) {
+        System.out.println(KotlinFileKt.leftpad("Hello, World", 3, "!"));
+    }
+}
+```
+
+???
+
+Kotlin is 100% interoperable with java.
+
+really important if you already have a huge java code base.
+
+extension functions!
+
+String Templates!
+
+---
+
+# Versatile
+Multi-purpose language allowing you to build any type of application
+- Use Kotlin for any type of Enterprise Java EE development.
+- Android Development.
+  No performance impact.
+  Very small runtime.
+- JavaScript. Write code in Kotlin and target JavaScript to run on Node.js or in browser
+
+# Tooling
+A language needs tooling and at JetBrains, it's what we do best!
+- Builtin support out of the box
+- Convert java to kotlin function
+
+???
+
+runtime: 354kb 1071 method count
+
+stdlib: 541kb 5508 method count
+
+statically typed -> allows intellij to help you
+
+refactoring and inspections and such
+
+---
+
+# More.. Higher Order Functions
+
+```
+fun <T> lock(lock: Lock, body: () -> T): T {
+    lock.lock()
+    try {
+        return body()
+    } finally {
+        lock.unlock()
+    }
+}
+
+lock(ReentrantLock()) { print("Locked") }
+```
+closures:
+```
+fun makeAdder(x: Int) = { y: Int -> x + y }
+
+val addTo10 = makeAdder(10)
+addTo10(20) // 30
+```
+---
+
+# Android
+Android extensions:
+```
+class MyActivity : Activity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        textView.setText("Hello, world!")
+        // Instead of findView(R.id.textView) as TextView
+    }
+}
+```
+### Widget for Trello - a case study
+- enormous code base of 1395 lines of java
+- ~3 days of work
+- 1092 lines of 100% kotlin
+- 21% decrease in overall size
+
+.footnote[[oryanm.github.io](https://oryanm.github.io)]
+
+???
+
+migration was really smooth
+
+a testimony to kotlin's conciseness and interoperability
+
+extension functions super helpful
+
+---
+# Gradle
+
+```
+plugins {
+    application
+}
+
+application {
+    mainClassName = "samples.HelloWorld"
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    testCompile("junit:junit:4.12")
+}
+```
+
+???
+
+moving away from Groovy
+
+---
+# Resources
+- [Website: kotlinlang.org](https://kotlinlang.org)
+    - [Kotlin Koans][koans]
+    - [Online IDE][try]
+- [Public Slack: kotlinlang.slack.com][slack]
+- [github repo][github]
+
+[try]:http://try.kotlinlang.org/
+[slack]:http://kotlinlang.slack.com/
+[github]:https://github.com/JetBrains/kotlin
+[koans]:https://kotlinlang.org/docs/tutorials/koans.html
+
+
+
+</textarea>
+<script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+</script>
+<script>
+      var slideshow = remark.create({
+          highlightStyle: 'monokai',
+          highlightLanguage: 'kotlin',
+          highlightLines: true
+        });
+</script>
+</body>
+</html>
