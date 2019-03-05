@@ -65,3 +65,13 @@ ul.posts li {
 #post pre code {
     padding: .0em;
 }
+
+#post blockquote {
+    border-left: 0.2em solid #8b877c;
+    padding: 0.6em;
+    margin: 0.6em;
+}
+
+#post blockquote p {
+  display: inline;
+}
